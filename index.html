@@ -1,0 +1,537 @@
+@@ -1,536 +0,0 @@
+# Portfolio avec Sokoban jouable basé sur ton vrai code C
+
+```html
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio BUT Informatique</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+    scroll-behavior:smooth;
+}
+
+body{
+
+    background:#111827;
+    color:white;
+}
+
+body::before{
+    content:"";
+    position:fixed;
+    width:100%;
+    height:100%;
+    background:
+    radial-gradient(circle at top left,#00f7ff22,transparent 30%),
+    radial-gradient(circle at bottom right,#ff00ff22,transparent 30%);
+    z-index:-1;
+}
+
+nav{
+    position:fixed;
+    top:0;
+    width:100%;
+    background:rgba(0,0,0,0.7);
+    backdrop-filter:blur(10px);
+    z-index:1000;
+    padding:20px;
+}
+
+nav ul{
+    display:flex;
+    justify-content:center;
+    gap:40px;
+    list-style:none;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    transition:0.3s;
+    font-weight:bold;
+}
+
+nav a:hover{
+    color:#d1d5db;
+}
+
+header{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+}
+
+.hero h1{
+    font-size:5rem;
+    color:#d1d5db;
+    text-shadow:none;
+}
+
+.hero p{
+    margin-top:20px;
+    color:#cbd5e1;
+    font-size:1.2rem;
+}
+
+section{
+    padding:100px 10%;
+}
+
+h2{
+    color:#d1d5db;
+    margin-bottom:40px;
+    font-size:3rem;
+}
+
+.card{
+    background:rgba(255,255,255,0.05);
+    border:1px solid rgba(255,255,255,0.1);
+    backdrop-filter:blur(12px);
+    border-radius:20px;
+    padding:30px;
+    margin-bottom:30px;
+    box-shadow:0 0 20px rgba(0,247,255,0.1);
+    transition:0.3s;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+}
+
+.skills{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+}
+
+.btn{
+    display:inline-block;
+    padding:12px 24px;
+    border-radius:12px;
+    background:#374151;
+    color:white;
+    text-decoration:none;
+    font-weight:bold;
+    border:none;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.btn:hover{
+    background:white;
+    transform:scale(1.05);
+}
+
+.game-container{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:20px;
+}
+
+#game{
+    display:grid;
+    gap:2px;
+    background:#0f172a;
+    padding:15px;
+    border-radius:20px;
+}
+
+.tile{
+    width:45px;
+    height:45px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    border-radius:8px;
+    font-size:1.4rem;
+}
+
+.wall{
+    background:#111827;
+}
+
+.floor{
+    background:#1e293b;
+}
+
+.target{
+    background:#ff00ff55;
+}
+
+.box{
+    background:#f59e0b;
+}
+
+.player{
+    background:#374151;
+}
+
+footer{
+    text-align:center;
+    padding:30px;
+    background:#020617;
+}
+
+@media(max-width:768px){
+
+.hero h1{
+    font-size:3rem;
+}
+
+nav ul{
+    flex-wrap:wrap;
+    gap:15px;
+}
+
+.tile{
+    width:30px;
+    height:30px;
+    font-size:1rem;
+}
+}
+
+</style>
+</head>
+
+<body>
+
+<nav>
+<ul>
+<li><a href="#about">À propos</a></li>
+<li><a href="#formation">Formation</a></li>
+<li><a href="#competences">Compétences</a></li>
+<li><a href="#projets">Projet</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+</nav>
+
+<header>
+<div class="hero">
+<img src="photoVisage.png" alt="Lucas Destre" class="profile-photo">
+<h1>Lucas Destre</h1>
+<p>Étudiant en BUT Informatique</p>
+<p>C | Linux | Java | JavaScript</p>
+</div>
+</header>
+
+<section id="about">
+<h2>À propos</h2>
+
+<div class="card">
+<p>
+Etudiant en BUT Informatique.
+</p>
+<br>
+<p>Étudiant en BUT Informatique, je développe des projets
+logiciels en C, Java et JavaScript. Je recherche une
+opportunité de stage ou d'alternance afin de mettre mes
+compétences au service d'une équipe de développement.</p>
+</div>
+</section>
+
+<section id="formation">
+<h2>Formation</h2>
+
+<div class="card">
+<h3>BUT Informatique</h3>
+<p>IUT de Lannion</p>
+<p>2025 - 2026</p>
+</div>
+
+</section>
+
+<section id="competences">
+<h2>Compétences</h2>
+
+<div class="skills">
+
+<div class="card">
+<h3>Développement</h3>
+<p>C / HTML / CSS / JavaScript</p>
+</div>
+
+<div class="card">
+<h3>Linux</h3>
+<p>Terminal Linux / Makefile</p>
+</div>
+
+<div class="card">
+<h3>Algorithmique</h3>
+<p>Gestion des déplacements et collisions</p>
+</div>
+
+<div class="card">
+<h3>Projet</h3>
+<p>Création complète d'un Sokoban</p>
+</div>
+
+</div>
+</section>
+
+<section id="projets">
+<h2>Projet Sokoban</h2>
+
+<div class="card game-container">
+
+<p>
+Projet jeu de sokoban en langage C:
+</p>
+
+
+
+<p>
+Sokoban = case grise </p>
+<p>Caisses = cases jaunes </p>
+<p>Cibles = case violettes</p>
+Touches : flèches du clavier
+</p>
+
+<div id="game"></div>
+
+<p id="moves">Déplacements : 0</p>
+
+<button class="btn" onclick="resetGame()">
+Recommencer
+</button>
+
+</div>
+</section>
+
+<section id="contact">
+<h2>Contact</h2>
+
+<div class="card">
+    <a href="cv_lucas_destre.pdf" class="btn" target="_blank">
+    Voir mon CV
+</a>
+
+<p>lucas@destre.net</p>
+<p><a href="https://www.linkedin.com/in/lucas-destre" target="_blank" style="color:#d1d5db;text-decoration:none;">LinkedIn</a></p>
+</div>
+
+</section>
+
+<footer>
+<p>Portfolio BUT Informatique - 2026</p>
+</footer>
+
+<script>
+
+// Reprise des symboles de ton code C
+const PLAYER = '@';
+const TARGET = '.';
+const PLAYERTARGET = '+';
+const BOX = '$';
+const WALL = '#';
+const BOXTARGET = '*';
+const AIR = ' ';
+
+// Niveau 1.sok
+const originalMap = [
+"#########",
+"###  ####",
+"#     $ #",
+"# #  #$ #",
+"# . .#@ #",
+"#########",
+];
+let map = [];
+let moves = 0;
+
+function resetGame(){
+
+    map = originalMap.map(row => row.split(''));
+    moves = 0;
+    render();
+}
+
+function render(){
+
+    const game = document.getElementById('game');
+
+    game.innerHTML = "";
+
+    game.style.gridTemplateColumns = `repeat(${map[0].length}, 45px)`;
+
+    document.getElementById("moves").textContent = `Déplacements : ${moves}`;
+
+    for(let y=0;y<map.length;y++){
+
+        for(let x=0;x<map[y].length;x++){
+
+            const cell = map[y][x];
+
+            const tile = document.createElement('div');
+            tile.classList.add('tile');
+
+            if(cell === WALL){
+                tile.classList.add('wall');
+            }
+
+            else if(cell === TARGET){
+                tile.classList.add('target');
+            }
+
+            else if(cell === BOX){
+                tile.classList.add('box');
+
+            }
+
+            else if(cell === BOXTARGET){
+                tile.classList.add('target');
+
+            }
+
+            else if(cell === PLAYER){
+                tile.classList.add('player');
+
+            }
+
+            else if(cell === PLAYERTARGET){
+                tile.classList.add('player');
+
+            }
+
+            else{
+                tile.classList.add('floor');
+            }
+
+            game.appendChild(tile);
+        }
+    }
+}
+
+function findPlayer(){
+
+    for(let y=0;y<map.length;y++){
+
+        for(let x=0;x<map[y].length;x++){
+
+            if(map[y][x] === PLAYER || map[y][x] === PLAYERTARGET){
+                return {x,y};
+            }
+        }
+    }
+}
+
+// adaptation directe de ton playerMove + blockMove en JS
+function move(dx,dy){
+
+    const player = findPlayer();
+
+    const x = player.x;
+    const y = player.y;
+
+    const next = map[y + dy][x + dx];
+    const after = map[y + dy * 2][x + dx * 2];
+
+    // mur
+    if(next === WALL){
+        return;
+    }
+
+    // caisse
+    if(next === BOX || next === BOXTARGET){
+
+        if(after === AIR || after === TARGET){
+
+            // déplacer la caisse
+            if(after === TARGET){
+                map[y + dy * 2][x + dx * 2] = BOXTARGET;
+            }
+            else{
+                map[y + dy * 2][x + dx * 2] = BOX;
+            }
+
+            // ancienne position caisse
+            if(next === BOXTARGET){
+                map[y + dy][x + dx] = TARGET;
+            }
+            else{
+                map[y + dy][x + dx] = AIR;
+            }
+        }
+        else{
+            return;
+        }
+    }
+
+    // déplacement joueur
+    if(map[y][x] === PLAYERTARGET){
+        map[y][x] = TARGET;
+    }
+    else{
+        map[y][x] = AIR;
+    }
+
+    if(map[y + dy][x + dx] === TARGET){
+        map[y + dy][x + dx] = PLAYERTARGET;
+    }
+    else{
+        map[y + dy][x + dx] = PLAYER;
+    }
+
+    moves++;
+
+    render();
+    checkWin();
+}
+
+function checkWin(){
+
+    for(let y=0;y<map.length;y++){
+
+        for(let x=0;x<map[y].length;x++){
+
+            if(map[y][x] === BOX){
+                return;
+            }
+        }
+    }
+
+    setTimeout(()=>{
+        alert('Bravo ! Niveau terminé !');
+    },100);
+}
+
+// contrôles identiques au C mais avec flèches
+
+document.addEventListener('keydown',(e)=>{
+
+    switch(e.key){
+
+        case 'ArrowUp':
+            move(0,-1);
+            break;
+
+        case 'ArrowDown':
+            move(0,1);
+            break;
+
+        case 'ArrowLeft':
+            move(-1,0);
+            break;
+
+        case 'ArrowRight':
+            move(1,0);
+            break;
+    }
+});
+
+resetGame();
+
+</script>
+
+</body>
+</html>
