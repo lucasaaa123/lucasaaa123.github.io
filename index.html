@@ -16,7 +16,7 @@
 }
 
 #competences {
-    max-width: 1000px;
+    max-width: 1200px;
     margin: 50px auto;
     padding: 20px;
 }
@@ -24,32 +24,58 @@
 #competences h2 {
     text-align: center;
     margin-bottom: 30px;
-    font-size: 2rem;
+}
+
+.competences-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
 }
 
 .competence {
-    background: #ffffff;
-    padding: 20px;
-    margin-bottom: 20px;
+    background: white;
     border-radius: 15px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    overflow: hidden;
 }
 
-.competence:hover {
-    transform: translateY(-5px);
+.competence summary {
+    padding: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1.1rem;
+    list-style: none;
 }
 
-.competence h3 {
-    color: #0077cc;
-    margin-bottom: 10px;
+.competence summary::-webkit-details-marker {
+    display: none;
+}
+
+.competence summary::after {
+    content: "+";
+    float: right;
+}
+
+.competence[open] summary::after {
+    content: "−";
 }
 
 .competence p {
-    color: #555;
+    padding: 0 20px 20px;
     line-height: 1.6;
 }
-    
+
+@media (max-width: 900px) {
+    .competences-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .competences-grid {
+        grid-template-columns: 1fr;
+    }
+} 
 body{
 
     background:#111827;
@@ -295,34 +321,38 @@ compétences au service d'une équipe de développement.</p>
 <section id="competences">
     <h2>Compétences</h2>
 
-    <div class="competence">
-        <h3>Réaliser</h3>
-        <p>Concevoir et développer des applications répondant aux besoins des utilisateurs en appliquant les bonnes pratiques de programmation.</p>
-    </div>
+    <div class="competences-grid">
 
-    <div class="competence">
-        <h3>Optimiser</h3>
-        <p>Améliorer les performances, la qualité et la maintenabilité des applications grâce à l'analyse et à l'optimisation des solutions techniques.</p>
-    </div>
+        <details class="competence">
+            <summary>Réaliser</summary>
+            <p>Concevoir, développer et tester des applications répondant aux besoins des utilisateurs.</p>
+        </details>
 
-    <div class="competence">
-        <h3>Administrer</h3>
-        <p>Installer, configurer et maintenir des systèmes et services informatiques tout en garantissant leur sécurité et leur disponibilité.</p>
-    </div>
+        <details class="competence">
+            <summary>Optimiser</summary>
+            <p>Améliorer les performances et la qualité des applications grâce à l'analyse et à l'optimisation.</p>
+        </details>
 
-    <div class="competence">
-        <h3>Gérer</h3>
-        <p>Structurer, stocker et exploiter les données de manière efficace en utilisant des outils et bases de données adaptés.</p>
-    </div>
+        <details class="competence">
+            <summary>Administrer</summary>
+            <p>Installer, configurer et maintenir des systèmes informatiques en garantissant leur sécurité.</p>
+        </details>
 
-    <div class="competence">
-        <h3>Conduire</h3>
-        <p>Analyser les besoins, planifier les tâches et piloter les différentes étapes d'un projet informatique jusqu'à leur réalisation.</p>
-    </div>
+        <details class="competence">
+            <summary>Gérer</summary>
+            <p>Structurer et exploiter les données à l'aide de bases de données et d'outils adaptés.</p>
+        </details>
 
-    <div class="competence">
-        <h3>Collaborer</h3>
-        <p>Travailler efficacement en équipe, communiquer avec les différents acteurs d'un projet et utiliser les outils collaboratifs professionnels.</p>
+        <details class="competence">
+            <summary>Conduire</summary>
+            <p>Planifier, organiser et suivre les différentes étapes d'un projet informatique.</p>
+        </details>
+
+        <details class="competence">
+            <summary>Collaborer</summary>
+            <p>Travailler efficacement en équipe et communiquer avec les différents acteurs d'un projet.</p>
+        </details>
+
     </div>
 </section>
 
